@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">InClass4</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="name">Name</string>
+    <string name="regPassword">Password</string>
+    <string name="loginbtn">Login</string>
+    <string name="createAccountbtn">Create New Account</string>
+    <string name="submit">Submit</string>
+    <string name="editeProfile">Edit Profile</string>
+    <string name="logOut">Log Out</string>
+    <string name="cancel">Cancel</string>
+</resources>
