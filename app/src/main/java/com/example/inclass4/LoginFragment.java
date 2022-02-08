@@ -9,20 +9,25 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 
 public class LoginFragment extends Fragment {
+    Button loginButton, registerButton;
+    EditText userIput, userPassword;
+
+
 
    // EditText emailLogin, password;
-
+   public LoginFragment() {
+       // Required empty public constructor
+   }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
 
     }
 
@@ -30,31 +35,48 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_login, container, false);
+        View v = inflater.inflate(R.layout.fragment_login, container, false);
+        userIput = v.findViewById(R.id.emailInput);
+        userIput.getText().toString();
 
+        userPassword = v.findViewById(R.id.passwordInput);
+        userPassword.getText().toString();
 
-        view.findViewById(R.id.loginButton).setOnClickListener(new View.OnClickListener() {
+           // Display Account Fragment
+        loginButton = v.findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                   if (!userIput.getText().toString().matches("") && !userPassword.getText().toString().matches("")) {
+                       getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.containerView, new AccountFragment(), null).commit();
+                   } else{
+                       Toast.makeText(getContext(), "Please enter an email or password", Toast.LENGTH_SHORT).show();
+                   }
+               }
+           });
+        // Display Register Fragment
+        registerButton = v.findViewById(R.id.createNewAccountButton);
+        registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Button Clicked !!", Toast.LENGTH_SHORT).show();
+               getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.containerView, new RegisterFragment(), null).commit();
             }
         });
 
-        return  view;
+        return  v;
     }
 
 
-//    LoginFragmentLister mListerner;
-//
-//    @Override
-//    public  void onAttach(@NonNull Context context){
-//        super.onAttach(context);
-//        mListerner = (LoginFragmentLister) context;
-//    }
-//
-//    interface  LoginFragmentLister{
-//    void sendAccount(DataServices.Account account);
-//        void goToRegister();
-//    }
+    LoginFragmentLister mListerner;
+
+    @Override
+    public  void onAttach(@NonNull Context context){
+        super.onAttach(context);
+        mListerner = (LoginFragmentLister) context;
+    }
+
+    interface  LoginFragmentLister{
+        void sendAccount(DataServices.Account account);
+        void goToRegister();
+    }
 }

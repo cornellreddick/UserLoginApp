@@ -4,9 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Project/InClass4/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Project/InClass4/app/src/main/res/layout/fragment_account.xml" value="0.35833333333333334" />
-        <entry key="..\:/Project/InClass4/app/src/main/res/layout/fragment_login.xml" value="0.33" />
+        <entry key="..\:/Project/InClass4/app/src/main/res/layout/fragment_account.xml" value="0.35014005602240894" />
+        <entry key="..\:/Project/InClass4/app/src/main/res/layout/fragment_login.xml" value="0.21019108280254778" />
         <entry key="..\:/Project/InClass4/app/src/main/res/layout/fragment_register.xml" value="0.3578125" />
+        <entry key="..\:/Project/InClass4/app/src/main/res/layout/fragment_update_account.xml" value="0.2" />
       </map>
     </option>
   </component>
