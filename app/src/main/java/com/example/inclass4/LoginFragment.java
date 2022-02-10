@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.net.StandardSocketOptions;
+
 
 public class LoginFragment extends Fragment {
     Button loginButton, registerButton;
@@ -37,20 +39,29 @@ public class LoginFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_login, container, false);
         userIput = v.findViewById(R.id.emailInput);
-        userIput.getText().toString();
 
         userPassword = v.findViewById(R.id.passwordInput);
-        userPassword.getText().toString();
 
            // Display Account Fragment
         loginButton = v.findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
+
                @Override
                public void onClick(View view) {
-                   if (!userIput.getText().toString().matches("") && !userPassword.getText().toString().matches("")) {
-                       getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.containerView, new AccountFragment(), null).commit();
-                   } else{
-                       Toast.makeText(getContext(), "Please enter an email or password", Toast.LENGTH_SHORT).show();
+                   String email = userIput.getText().toString();
+                   String password = userPassword.getText().toString();
+
+                   if (email.isEmpty()){
+                        Toast.makeText(getActivity(), "Enter a valid email", Toast.LENGTH_SHORT).show();
+                   }else if (password.isEmpty()){
+                       Toast.makeText(getActivity(), "Enter a valid email", Toast.LENGTH_SHORT).show();
+                   }else{
+                       DataServices.AccountRequestTask task = DataServices.login(email, password);
+                       if (task.isSuccessful()){
+                            DataServices.Account account = task.getAccount();
+                           mListerner.sendAccount(account);
+                       }
+
                    }
                }
            });
@@ -59,7 +70,8 @@ public class LoginFragment extends Fragment {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.containerView, new RegisterFragment(), null).commit();
+                mListerner.goToRegister();
+               //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.containerView, new RegisterFragment(), null).commit();
             }
         });
 

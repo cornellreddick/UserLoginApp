@@ -13,7 +13,7 @@
     <string name="logOut">Log Out</string>
     <string name="cancel">Cancel</string>
     <string name="welcome">Welcome !!</string>
-    <string name="UserNameAcct">b@b.com</string>
+    <string name="UserNameAcct"></string>
     <string name="updateAcctEmailLabel"></string>
 
 </resources>

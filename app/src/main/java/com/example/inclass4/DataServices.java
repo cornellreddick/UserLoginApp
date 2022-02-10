@@ -3,7 +3,7 @@ package com.example.inclass4;
 import java.io.Serializable;
 import java.util.HashMap;
 
-public class DataServices implements Serializable {
+public class DataServices implements Serializable{
     private static HashMap<String, Account> accounts = new HashMap<String, Account>(){{
         put("a@a.com", new Account("Alice Smith", "a@a.com", "test123"));
         put("b@b.com", new Account("Bob Smith", "b@b.com", "test123"));
@@ -81,7 +81,7 @@ public class DataServices implements Serializable {
         return new AccountRequestTask(account);
     }
 
-    public static class Account {
+    public static class Account implements Serializable {
         private String name, email, password;
         public Account(String name, String email, String password) {
             this.name = name;
